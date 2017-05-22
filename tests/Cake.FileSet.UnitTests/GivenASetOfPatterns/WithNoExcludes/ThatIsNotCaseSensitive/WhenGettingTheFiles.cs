@@ -1,0 +1,47 @@
+﻿using System.Collections.Generic;
+using System.Linq;
+using Cake.Core.IO;
+using Cake.FileSet.UnitTests.Framework;
+using NUnit.Framework;
+
+namespace Cake.FileSet.UnitTests.GivenASetOfPatterns.WithNoExcludes.ThatIsNotCaseSensitive
+{
+    [TestFixture]
+    public class WhenGettingTheFiles
+    {
+        private List<FilePath> _result;
+
+        [SetUp]
+        public void SetUp()
+        {
+            var testDirectory = TestDirectory.Root("Cake.FileSet", "D:/code/git/Cake.FileSet")
+                .Add("src/a/one.csproj")
+                .Add("src/b/ONE.csproj")
+                .Add("src/c/one.csproj")
+                .Add("src/c/two.csproj");
+
+            var includes = new List<string>
+            {
+                "**/*.csproj"
+            };
+
+            var subject = new FileSet(testDirectory, includes, new List<string>(), false);
+            _result = subject.GetFiles().ToList();
+        }
+
+        [Test]
+        public void ThenAllFilesAreReturned()
+        {
+            Assert.That(_result.Count, Is.EqualTo(4));
+        }
+
+        [Test]
+        public void ThenTheMatchingFilesAreReturned()
+        {
+            Assert.That(_result.Count(x => x.FullPath == "D:/code/git/Cake.FileSet/src/a/one.csproj"), Is.EqualTo(1));
+            Assert.That(_result.Count(x => x.FullPath == "D:/code/git/Cake.FileSet/src/b/ONE.csproj"), Is.EqualTo(1));
+            Assert.That(_result.Count(x => x.FullPath == "D:/code/git/Cake.FileSet/src/c/one.csproj"), Is.EqualTo(1));
+            Assert.That(_result.Count(x => x.FullPath == "D:/code/git/Cake.FileSet/src/c/two.csproj"), Is.EqualTo(1));
+        }
+    }
+}
