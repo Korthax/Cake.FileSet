@@ -1,4 +1,5 @@
-#addin ".\..\..\src\Cake.FileSet\bin\Debug\netstandard1.6\Cake.FileSet.dll"
+#r ".\..\..\src\Cake.FileSet\bin\Debug\netstandard1.6\Cake.FileSet.dll"
+#addin "nuget:?package=Microsoft.Extensions.FileSystemGlobbing&version=1.1.1"
 #addin "nuget:?package=NUnit"
 
 using NUnit.Framework;
