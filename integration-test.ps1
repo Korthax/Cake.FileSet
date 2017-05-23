@@ -1,4 +1,3 @@
-[Reflection.Assembly]::LoadWithPartialName("System.Security") | Out-Null
 function MD5HashFile([string] $filePath)
 {
     if ([string]::IsNullOrEmpty($filePath) -or !(Test-Path $filePath -PathType Leaf))
@@ -6,21 +5,7 @@ function MD5HashFile([string] $filePath)
         return $null
     }
 
-    [System.IO.Stream] $file = $null;
-    [System.Security.Cryptography.MD5] $md5 = $null;
-    try
-    {
-        $md5 = [System.Security.Cryptography.MD5]::Create()
-        $file = [System.IO.File]::OpenRead($filePath)
-        return [System.BitConverter]::ToString($md5.ComputeHash($file))
-    }
-    finally
-    {
-        if ($file -ne $null)
-        {
-            $file.Dispose()
-        }
-    }
+    return Get-FileHash -Path $filePath -Algorithm MD5
 }
 
 Write-Host "Preparing to run build script..."
@@ -102,7 +87,7 @@ if(-Not $SkipToolPackageRestore.IsPresent) {
 }
 
 Write-Host -ForegroundColor Cyan "Running Net45 tests..."
-./tools/Cake/Cake.exe ./tests/Cake.FileSet.IntegrationTests/test.net45.cake --verbosity=Verbose
+./tools/Cake/Cake.exe ./tests/Cake.FileSet.IntegrationTests/test.net45.cake --verbosity=Diagnostic
 
 Write-Host -ForegroundColor Cyan "`nRunning NetStandard1.6 tests..."
-dotnet ./tools/Cake.CoreCLR/Cake.dll ./tests/Cake.FileSet.IntegrationTests/test.netstandard16.cake --verbosity=Verbose
+dotnet ./tools/Cake.CoreCLR/Cake.dll ./tests/Cake.FileSet.IntegrationTests/test.netstandard16.cake --verbosity=Diagnostic

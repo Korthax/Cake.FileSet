@@ -66,13 +66,31 @@ namespace Cake.FileSet
 
             foreach(var pattern in patterns ?? new string[0])
             {
-                if(pattern.StartsWith("!!"))
-                    excludes.Add(pattern.Substring(2));
+                if(pattern.StartsWith("!"))
+                    excludes.Add(pattern.Substring(1));
                 else
                     includes.Add(pattern);
             }
 
             return Find(basePath, includes, excludes, caseSensitive);
+        }
+
+        /// <summary>
+        /// Gets a fileset by FileSetSettings
+        /// </summary>
+        /// <example>
+        /// <code>
+        /// IEnumerable&gt;FilePath&lt; filePaths = FileSet.Find("D:\code\git\Cake.FileSet", new string[] { "/src/**/*.csproj" } , new string[] { "/src/**/*.Test.csproj" }, false);
+        /// </code>
+        /// </example>
+        /// <returns>Returns an IEnumberable of <c>FilePath</c> that match the input patterns.</returns>
+        /// <param name="include">Pattern to include.</param>
+        /// <param name="excludes">Patterns to exclude.</param>
+        /// <param name="caseSensitive">Whether the pattern match is case senstive. Defaults to false.</param>
+        /// <param name="basePath">Base directory to use for the fileset. The working directory is used if null.</param>
+        public static IEnumerable<FilePath> Find(string basePath, string include, IEnumerable<string> excludes = null, bool caseSensitive = false)
+        {
+            return Find(basePath, new[] { include }, excludes, caseSensitive);
         }
 
         /// <summary>

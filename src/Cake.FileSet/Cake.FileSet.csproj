@@ -7,15 +7,15 @@
     <PackageProjectUrl>https://github.com/CleanKludge/Cake.FileSet</PackageProjectUrl>
     <PackageLicenseUrl>https://raw.githubusercontent.com/CleanKludge/Cake.FileSet/master/LICENSE</PackageLicenseUrl>
     <PackageTags>Cake Script File</PackageTags>
-    <PackageVersion>1.1.0</PackageVersion>
+    <PackageVersion>1.1.1</PackageVersion>
     <RepositoryType>git</RepositoryType>
     <Copyright>Copyright (c) Steve Phillips 2017</Copyright>
     <Description>AddIn that adds filesets to Cake.</Description>
     <Company>CleanKludge</Company>
-    <Version>1.1.0</Version>
+    <Version>1.1.1</Version>
     <PackageRequireLicenseAcceptance>False</PackageRequireLicenseAcceptance>
-    <AssemblyVersion>1.1.0.0</AssemblyVersion>
-    <FileVersion>1.1.0.0</FileVersion>
+    <AssemblyVersion>1.1.1.0</AssemblyVersion>
+    <FileVersion>1.1.1.0</FileVersion>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 

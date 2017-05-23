@@ -21,7 +21,7 @@ Matches anything at the current folder level, or any filename, or any file exten
 
 <strong><code>**</code></strong>
 
-   Matches anything across multiple directory levels. Can be used to recursively match many files within a directory hierarchy.
+Matches anything across multiple directory levels. Can be used to recursively match many files within a directory hierarchy.
 
 ### Globbing pattern examples
 
@@ -41,6 +41,11 @@ Matches anything at the current folder level, or any filename, or any file exten
 
    Matches all files with `.txt` extension found anywhere under the `directory` directory.
 
+### Additional usage
+
+When finding files by patterns you can use `!` to negate a pattern (exclude it).
+
+
 ### Further Information
 
 For more information on how Mircosoft's globbing works please see either their [documentation](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/file-providers#globbing-patterns) or their [source ](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/file-providers#globbing-patterns).
@@ -49,12 +54,14 @@ For more information on how Mircosoft's globbing works please see either their [
 
 ```csharp
 #addin "Cake.FileSet"
+#addin "nuget:?package=Microsoft.Extensions.FileSystemGlobbing&version=1.1.1"
 ```
 
-## Usage
+## Addin Usage
 
 ```csharp
 #addin "Cake.FileSet"
+#addin "nuget:?package=Microsoft.Extensions.FileSystemGlobbing&version=1.1.1"
 
 ...
 
@@ -64,7 +71,7 @@ Task("GetFileSet.BySettings")
         var settings = new FileSetSettings {
             Includes = new string[] { "/src/**/one.txt" },
             Excludes = new string[] { "/src/c/*.txt" },
-            BasePath = baseDirectory,
+            BasePath = "D:/code/git/Cake.FileSet",
             CaseSensitive = false
         };
 
@@ -83,7 +90,7 @@ Task("GetFileSet.ByIncludes")
             includes: new string[] { "/src/**/*.txt" },
             excludes: new string[] { "**/two.txt" },
             caseSensitive: false,
-            basePath: baseDirectory
+            basePath: "D:/code/git/Cake.FileSet"
         );
 
         foreach(FilePath item in result)
@@ -99,7 +106,7 @@ Task("GetFileSet.ByInclude")
             include: "/src/**/*.txt",
             excludes: new string[] { "**/two.txt" },
             caseSensitive: false,
-            basePath: baseDirectory
+            basePath: "D:/code/git/Cake.FileSet"
         );
 
         foreach(FilePath item in result)
@@ -112,7 +119,7 @@ Task("GetFileSet.ByPatterns")
     .Does(() =>
     {
         var result = GetFileSet(
-            patterns: new string[] { "**/one.txt", "!!**/two.txt" },
+            patterns: new string[] { "**/one.txt", "!**/two.txt" },
             caseSensitive: false,
             basePath: baseDirectory
         );
@@ -124,7 +131,44 @@ Task("GetFileSet.ByPatterns")
     });
 ```
 
+## Direct Usage
+
+```csharp
+#addin "Cake.FileSet"
+#addin "nuget:?package=Microsoft.Extensions.FileSystemGlobbing&version=1.1.1"
+
+...
+
+IEnumberable<FilePath> bySettings = FileSet.Find(new FileSetSettings {
+    Includes = new string[] { "/src/**/one.txt" },
+    Excludes = new string[] { "/src/c/*.txt" },
+    BasePath = "D:/code/git/Cake.FileSet",
+    CaseSensitive = false
+});
+
+IEnumberable<FilePath> byIncludes = FileSet.Find(
+    includes: new string[] { "/src/**/one.txt" },
+    excludes: new string[] { "/src/c/*.txt" },
+    basePath: "D:/code/git/Cake.FileSet",
+    caseSensitive: false
+);
+
+IEnumberable<FilePath> byInclude = FileSet.Find(
+    include: "/src/**/one.txt",
+    excludes: new string[] { "/src/c/*.txt" },
+    basePath: "D:/code/git/Cake.FileSet",
+    caseSensitive: false
+);
+
+IEnumberable<FilePath> byPatterns = FileSet.Find(
+    patterns: new string[] { "**/one.txt", "!**/two.txt" },
+    basePath: "D:/code/git/Cake.FileSet",
+    caseSensitive: false
+);
+
+```
+
 # General Notes
 **This is an initial version and not tested thoroughly.**
 
-**I've created this addin for use in my own scripts as I wasn't happy with the usage of the inbuilt ones therefore use at your own risk :)**
+**I've created this addin for use in my own scripts as I wasn't happy with the usage of the in built one therefore use at your own risk :)**

@@ -22,7 +22,6 @@ namespace Cake.FileSet
     /// directory/*/bower.json - Matches all bower.json files in directories exactly one level below the directory directory.
     /// directory/**/*.txt - Matches all files with .txt extension found anywhere under the directory directory.
     /// </remarks>
-    [CakeNamespaceImport("Microsoft.Extensions.FileSystemGlobbing")]
     [CakeAliasCategory("FileSet")]
     public static class FileSetAliases
     {
@@ -138,7 +137,7 @@ namespace Cake.FileSet
                 throw new ArgumentNullException(nameof(include));
 
             return FileSet
-                .Find(basePath?.FullPath ?? context.Environment.WorkingDirectory.FullPath, new []{ include }, excludes, caseSensitive)
+                .Find(basePath?.FullPath ?? context.Environment.WorkingDirectory.FullPath, include, excludes, caseSensitive)
                 .ToList();
         }
 
