@@ -262,5 +262,10 @@ __pycache__/
 
 # Cake
 /tools
-!tools/packages.config
+/tools/Addins
+/tools/Cake
+/tools/Cake.CoreCLR
 /tests/Cake.FileSet.IntegrationTests/tools
+tools/packages.config.md5sum
+tools/nuget.exe
+!tools/packages.config

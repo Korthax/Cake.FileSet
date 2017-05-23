@@ -102,7 +102,7 @@ if(-Not $SkipToolPackageRestore.IsPresent) {
 }
 
 Write-Host -ForegroundColor Cyan "Running Net45 tests..."
-.\tools\Cake\Cake.exe ./tests/Cake.FileSet.IntegrationTests/test.net45.cake --verbosity=Verbose
+./tools/Cake/Cake.exe ./tests/Cake.FileSet.IntegrationTests/test.net45.cake --verbosity=Verbose
 
 Write-Host -ForegroundColor Cyan "`nRunning NetStandard1.6 tests..."
-dotnet .\tools\Cake.CoreCLR\Cake.dll ./tests/Cake.FileSet.IntegrationTests/test.netstandard16.cake --verbosity=Verbose
+dotnet ./tools/Cake.CoreCLR/Cake.dll ./tests/Cake.FileSet.IntegrationTests/test.netstandard16.cake --verbosity=Verbose
