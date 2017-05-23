@@ -55,7 +55,6 @@ Param(
     [string[]]$ScriptArgs
 )
 
-[Reflection.Assembly]::LoadWithPartialName("System.Security") | Out-Null
 function MD5HashFile([string] $filePath)
 {
     if ([string]::IsNullOrEmpty($filePath) -or !(Test-Path $filePath -PathType Leaf))
@@ -63,21 +62,7 @@ function MD5HashFile([string] $filePath)
         return $null
     }
 
-    [System.IO.Stream] $file = $null;
-    [System.Security.Cryptography.MD5] $md5 = $null;
-    try
-    {
-        $md5 = [System.Security.Cryptography.MD5]::Create()
-        $file = [System.IO.File]::OpenRead($filePath)
-        return [System.BitConverter]::ToString($md5.ComputeHash($file))
-    }
-    finally
-    {
-        if ($file -ne $null)
-        {
-            $file.Dispose()
-        }
-    }
+    return Get-FileHash -Path $filePath -Algorithm MD5
 }
 
 Write-Host "Preparing to run build script..."
@@ -185,5 +170,7 @@ if (!(Test-Path $CAKE_EXE)) {
 
 # Start Cake
 Write-Host "Running build script..."
-Invoke-Expression "& `"$CAKE_EXE`" `"$Script`" -target=`"$Target`" -configuration=`"$Configuration`" -verbosity=`"$Verbosity`" $UseMono $UseDryRun $UseExperimental $ScriptArgs"
+#Invoke-Expression "& `"$CAKE_EXE`" `"$Script`" -target=`"$Target`" -configuration=`"$Configuration`" -verbosity=`"$Verbosity`" $UseMono $UseDryRun $UseExperimental $ScriptArgs"
+
+dotnet "./tools/Cake.CoreCLR/Cake.dll" "$Script" -target="$Target" -verbosity="$Verbosity" -configuration="$Configuration" -ScriptArgs="$ScriptArgs"
 exit $LASTEXITCODE

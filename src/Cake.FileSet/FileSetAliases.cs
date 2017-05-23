@@ -22,6 +22,7 @@ namespace Cake.FileSet
     /// directory/*/bower.json - Matches all bower.json files in directories exactly one level below the directory directory.
     /// directory/**/*.txt - Matches all files with .txt extension found anywhere under the directory directory.
     /// </remarks>
+    [CakeNamespaceImport("Microsoft.Extensions.FileSystemGlobbing")]
     [CakeAliasCategory("FileSet")]
     public static class FileSetAliases
     {
@@ -84,13 +85,13 @@ namespace Cake.FileSet
         /// </example>
         /// <param name="context">The context.</param>
         /// <param name="includes">Patterns to include.</param>
-        /// <param name="excludes">Patterns to exclude.</param>
-        /// <param name="caseSensitive">Whether the pattern match is case senstive. Defaults to false.</param>
-        /// <param name="basePath">Base path to use for the fileset. The working directory is used if null.</param>
+        /// <param name="excludes">Patterns to exclude. Optional.</param>
+        /// <param name="caseSensitive">Whether the pattern match is case senstive. Optional. Defaults to false.</param>
+        /// <param name="basePath">Base path to use for the fileset. Optional. The working directory is used if null.</param>
         /// <exception cref="System.ArgumentNullException">Thrown when the <c>ICakeContext</c>.</exception>
         /// <exception cref="System.ArgumentNullException">Thrown when the <c>includes</c> are null.</exception>
         [CakeMethodAlias]
-        public static List<FilePath> GetFileSet(this ICakeContext context, IEnumerable<string> includes, IEnumerable<string> excludes, bool caseSensitive = false, DirectoryPath basePath = null)
+        public static List<FilePath> GetFileSet(this ICakeContext context, IEnumerable<string> includes, IEnumerable<string> excludes = null, bool caseSensitive = false, DirectoryPath basePath = null)
         {
             if (context == null)
                 throw new ArgumentNullException(nameof(context));
@@ -122,13 +123,13 @@ namespace Cake.FileSet
         /// </example>
         /// <param name="context">The context.</param>
         /// <param name="include">The pattern to include.</param>
-        /// <param name="excludes">Patterns to exclude.</param>
-        /// <param name="caseSensitive">Whether the pattern match is case senstive. Defaults to false.</param>
-        /// <param name="basePath">Base path to use for the fileset. The working directory is used if null.</param>
+        /// <param name="excludes">Patterns to exclude. Optional.</param>
+        /// <param name="caseSensitive">Whether the pattern match is case senstive. Optional. Defaults to false.</param>
+        /// <param name="basePath">Base path to use for the fileset. Optional. The working directory is used if null.</param>
         /// <exception cref="System.ArgumentNullException">Thrown when the <c>ICakeContext</c>.</exception>
         /// <exception cref="System.ArgumentNullException">Thrown when the <c>include</c> is null or whitespace.</exception>
         [CakeMethodAlias]
-        public static List<FilePath> GetFileSet(this ICakeContext context, string include, IEnumerable<string> excludes, bool caseSensitive = false, DirectoryPath basePath = null)
+        public static List<FilePath> GetFileSet(this ICakeContext context, string include, IEnumerable<string> excludes = null, bool caseSensitive = false, DirectoryPath basePath = null)
         {
             if (context == null)
                 throw new ArgumentNullException(nameof(context));
@@ -163,8 +164,8 @@ namespace Cake.FileSet
         /// </example>
         /// <param name="context">The context.</param>
         /// <param name="patterns">Patterns to match against.</param>
-        /// <param name="caseSensitive">Whether the pattern match is case senstive. Defaults to false.</param>
-        /// <param name="basePath">Base path to use for the fileset. The working directory is used if null.</param>
+        /// <param name="caseSensitive">Whether the pattern match is case senstive. Optional. Defaults to false.</param>
+        /// <param name="basePath">Base path to use for the fileset. Optional. The working directory is used if null.</param>
         /// <exception cref="System.ArgumentNullException">Thrown when the <c>ICakeContext</c>.</exception>
         /// <exception cref="System.ArgumentNullException">Thrown when the <c>patterns</c> are null.</exception>
         [CakeMethodAlias]
