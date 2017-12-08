@@ -1,21 +1,21 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard1.6;net45</TargetFrameworks>
+    <TargetFrameworks>netstandard1.6;net46</TargetFrameworks>
     <Authors>Steve Phillips</Authors>
     <RepositoryUrl>https://github.com/CleanKludge/Cake.FileSet</RepositoryUrl>
     <PackageProjectUrl>https://github.com/CleanKludge/Cake.FileSet</PackageProjectUrl>
     <PackageLicenseUrl>https://raw.githubusercontent.com/CleanKludge/Cake.FileSet/master/LICENSE</PackageLicenseUrl>
     <PackageTags>Cake Script File</PackageTags>
-    <PackageVersion>1.1.1</PackageVersion>
+    <PackageVersion>1.2.0</PackageVersion>
     <RepositoryType>git</RepositoryType>
     <Copyright>Copyright (c) Steve Phillips 2017</Copyright>
     <Description>AddIn that adds filesets to Cake.</Description>
     <Company>CleanKludge</Company>
-    <Version>1.1.1</Version>
+    <Version>1.2.0</Version>
     <PackageRequireLicenseAcceptance>False</PackageRequireLicenseAcceptance>
-    <AssemblyVersion>1.1.1.0</AssemblyVersion>
-    <FileVersion>1.1.1.0</FileVersion>
+    <AssemblyVersion>1.2.0.0</AssemblyVersion>
+    <FileVersion>1.2.0.0</FileVersion>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <PackageIconUrl>https://cdn.rawgit.com/cake-contrib/graphics/a5cf0f881c390650144b2243ae551d5b9f836196/png/cake-contrib-medium.png</PackageIconUrl>
   </PropertyGroup>
@@ -25,7 +25,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Cake.Core" Version="0.19.5" />
+    <PackageReference Include="Cake.Core" Version="0.23.0" />
     <PackageReference Include="Microsoft.Extensions.FileSystemGlobbing" Version="1.1.1" />
   </ItemGroup>
 
