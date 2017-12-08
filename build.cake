@@ -16,11 +16,7 @@ Task("Restore")
     .IsDependentOn("Clean")
     .Does(() =>
     {
-        var settings = new DotNetCoreRestoreSettings
-        {
-            Verbose = false
-        };
-
+        var settings = new DotNetCoreRestoreSettings();
         DotNetCoreRestore(settings);
     });
 
@@ -28,10 +24,10 @@ Task("BuildSource")
     .IsDependentOn("Restore")
     .Does(() =>
     {
-        var settingsNet45 = new DotNetCoreBuildSettings
+        var settingsNet46 = new DotNetCoreBuildSettings
         {
             Configuration = configuration,
-            Framework = "net45"
+            Framework = "net46"
         };
 
         var settingsNetStandard = new DotNetCoreBuildSettings
@@ -42,7 +38,7 @@ Task("BuildSource")
 
         foreach(var file in GetFiles("./src/*/*.csproj"))
         {
-            DotNetCoreBuild(file.ToString(), settingsNet45);
+            DotNetCoreBuild(file.ToString(), settingsNet46);
             DotNetCoreBuild(file.ToString(), settingsNetStandard);
         }
     });
@@ -51,10 +47,10 @@ Task("BuildTests")
     .IsDependentOn("BuildSource")
     .Does(() =>
     {
-        var settingsNet45 = new DotNetCoreBuildSettings
+        var settingsNet46 = new DotNetCoreBuildSettings
         {
             Configuration = "Debug",
-            Framework = "net45"
+            Framework = "net46"
         };
 
         var settingsNetCoreApp = new DotNetCoreBuildSettings
@@ -65,7 +61,7 @@ Task("BuildTests")
 
         foreach(var file in GetFiles("./tests/*/*.csproj"))
         {
-            DotNetCoreBuild(file.ToString(), settingsNet45);
+            DotNetCoreBuild(file.ToString(), settingsNet46);
             DotNetCoreBuild(file.ToString(), settingsNetCoreApp);
         }
     });
@@ -80,16 +76,16 @@ Task("Test")
             Framework = "netcoreapp1.1"
         };
 
-        var settingsNet45 = new DotNetCoreTestSettings
+        var settingsNet46 = new DotNetCoreTestSettings
         {
             Configuration = "Debug",
-            Framework = "net45"
+            Framework = "net46"
         };
 
         foreach(var file in GetFiles("./tests/*/*.csproj"))
         {
             DotNetCoreTest(file.ToString(), settingsNetCoreApp);
-            DotNetCoreTest(file.ToString(), settingsNet45);
+            DotNetCoreTest(file.ToString(), settingsNet46);
         }
     });
 
