@@ -11,6 +11,20 @@ AddIn that adds filesets to Cake using [**Microsoft.Extensions.FileSystemGlobbin
 * Microsoft.Extensions.FileSystemGlobbing v2.0.1
 * NETStandard.Library v2.0 *when using .NETStandard2.0* or NET471
 
+## Build / Tests
+### Running Build / Unit Tests
+
+`.\build.ps1 -Target Test`
+
+Builds and runs the unit tests using `build.cake`. 
+
+### Running Integration Tests
+`.\integration-test.ps1`
+
+Runs the integrations tests for both net framework and net core.
+
+*If you update the framework versions, cake version, or the file globbing package you'll need to modify the cake files at tests\Cake.FileSet.IntegrationTests.*
+
 ## Globbing patterns
 
 The Microsoft globbing library supports the following two wildcard characters; `*` and `**`:
