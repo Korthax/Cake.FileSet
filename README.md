@@ -54,14 +54,14 @@ For more information on how Mircosoft's globbing works please see either their [
 
 ```csharp
 #addin "Cake.FileSet"
-#addin "nuget:?package=Microsoft.Extensions.FileSystemGlobbing&version=1.1.1"
+#addin "nuget:?package=Microsoft.Extensions.FileSystemGlobbing&version=2.0.1"
 ```
 
 ## Addin Usage
 
 ```csharp
 #addin "Cake.FileSet"
-#addin "nuget:?package=Microsoft.Extensions.FileSystemGlobbing&version=1.1.1"
+#addin "nuget:?package=Microsoft.Extensions.FileSystemGlobbing&version=2.0.1"
 
 ...
 
@@ -135,7 +135,7 @@ Task("GetFileSet.ByPatterns")
 
 ```csharp
 #addin "Cake.FileSet"
-#addin "nuget:?package=Microsoft.Extensions.FileSystemGlobbing&version=1.1.1"
+#addin "nuget:?package=Microsoft.Extensions.FileSystemGlobbing&version=2.0.1
 
 ...
 
