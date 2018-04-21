@@ -7,9 +7,9 @@ AddIn that adds filesets to Cake using [**Microsoft.Extensions.FileSystemGlobbin
 
 ## Dependencies
 
-* Cake v0.23.0
-* Microsoft.Extensions.FileSystemGlobbing v1.1.1
-* NETStandard.Library v1.6.1 *when using .NETStandard1.6* or NET46
+* Cake v0.27.0
+* Microsoft.Extensions.FileSystemGlobbing v2.0.1
+* NETStandard.Library v2.0 *when using .NETStandard2.0* or NET471
 
 ## Globbing patterns
 
