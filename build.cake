@@ -3,6 +3,7 @@ var configuration = Argument("configuration", "Release");
 var version = Argument("version", "*");
 
 var netStandardVersion = "netstandard2.0";
+var netCoreAppVersion = "netcoreapp2.0";
 var netFrameworkVersion = "net471";
 
 Task("Clean")
@@ -59,7 +60,7 @@ Task("BuildTests")
         var settingsNetCoreApp = new DotNetCoreBuildSettings
         {
             Configuration = "Debug",
-            Framework = "netStandardVersion
+            Framework = netCoreAppVersion
         };
 
         foreach(var file in GetFiles("./tests/*/*.csproj"))
@@ -76,7 +77,7 @@ Task("Test")
         var settingsNetCoreApp = new DotNetCoreTestSettings
         {
             Configuration = "Debug",
-            Framework = netStandardVersion
+            Framework = netCoreAppVersion
         };
 
         var settingsNetFramework = new DotNetCoreTestSettings
