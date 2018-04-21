@@ -86,8 +86,8 @@ if(-Not $SkipToolPackageRestore.IsPresent) {
     Pop-Location
 }
 
-Write-Host -ForegroundColor Cyan "Running Net46 tests..."
-./tools/Cake/Cake.exe ./tests/Cake.FileSet.IntegrationTests/test.net46.cake --verbosity=Diagnostic
+Write-Host -ForegroundColor Cyan "Running Net471 tests..."
+./tools/Cake/Cake.exe ./tests/Cake.FileSet.IntegrationTests/test.netframework.cake --verbosity=Diagnostic
 
-Write-Host -ForegroundColor Cyan "`nRunning NetStandard1.6 tests..."
-dotnet ./tools/Cake.CoreCLR/Cake.dll ./tests/Cake.FileSet.IntegrationTests/test.netstandard16.cake --verbosity=Diagnostic
+Write-Host -ForegroundColor Cyan "`nRunning NetStandard2.0 tests..."
+dotnet ./tools/Cake.CoreCLR/Cake.dll ./tests/Cake.FileSet.IntegrationTests/test.netstandard.cake --verbosity=Diagnostic

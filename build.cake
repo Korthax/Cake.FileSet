@@ -2,6 +2,9 @@ var target = Argument("target", "Default");
 var configuration = Argument("configuration", "Release");
 var version = Argument("version", "*");
 
+var netStandardVersion = "netstandard2.0";
+var netFrameworkVersion = "net471";
+
 Task("Clean")
     .Does(() =>
     {
@@ -24,21 +27,21 @@ Task("BuildSource")
     .IsDependentOn("Restore")
     .Does(() =>
     {
-        var settingsNet46 = new DotNetCoreBuildSettings
+        var settingsNetFramework = new DotNetCoreBuildSettings
         {
             Configuration = configuration,
-            Framework = "net46"
+            Framework = netFrameworkVersion
         };
 
         var settingsNetStandard = new DotNetCoreBuildSettings
         {
             Configuration = configuration,
-            Framework = "netstandard1.6"
+            Framework = netStandardVersion
         };
 
         foreach(var file in GetFiles("./src/*/*.csproj"))
         {
-            DotNetCoreBuild(file.ToString(), settingsNet46);
+            DotNetCoreBuild(file.ToString(), settingsNetFramework);
             DotNetCoreBuild(file.ToString(), settingsNetStandard);
         }
     });
@@ -47,21 +50,21 @@ Task("BuildTests")
     .IsDependentOn("BuildSource")
     .Does(() =>
     {
-        var settingsNet46 = new DotNetCoreBuildSettings
+        var settingsNetFramework = new DotNetCoreBuildSettings
         {
             Configuration = "Debug",
-            Framework = "net46"
+            Framework = netFrameworkVersion
         };
 
         var settingsNetCoreApp = new DotNetCoreBuildSettings
         {
             Configuration = "Debug",
-            Framework = "netcoreapp1.1"
+            Framework = "netStandardVersion
         };
 
         foreach(var file in GetFiles("./tests/*/*.csproj"))
         {
-            DotNetCoreBuild(file.ToString(), settingsNet46);
+            DotNetCoreBuild(file.ToString(), settingsNetFramework);
             DotNetCoreBuild(file.ToString(), settingsNetCoreApp);
         }
     });
@@ -73,19 +76,19 @@ Task("Test")
         var settingsNetCoreApp = new DotNetCoreTestSettings
         {
             Configuration = "Debug",
-            Framework = "netcoreapp1.1"
+            Framework = netStandardVersion
         };
 
-        var settingsNet46 = new DotNetCoreTestSettings
+        var settingsNetFramework = new DotNetCoreTestSettings
         {
             Configuration = "Debug",
-            Framework = "net46"
+            Framework = netFrameworkVersion
         };
 
         foreach(var file in GetFiles("./tests/*/*.csproj"))
         {
             DotNetCoreTest(file.ToString(), settingsNetCoreApp);
-            DotNetCoreTest(file.ToString(), settingsNet46);
+            DotNetCoreTest(file.ToString(), settingsNetFramework);
         }
     });
 
