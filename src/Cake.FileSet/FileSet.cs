@@ -40,7 +40,7 @@ namespace Cake.FileSet
         /// IEnumerable&gt;FilePath&lt; filePaths = FileSet.Find(new FileSetSettings());
         /// </code>
         /// </example>
-        /// <returns>Returns an IEnumberable of <c>FilePath</c> that match the input patterns.</returns>
+        /// <returns>Returns an IEnumerable of <c>FilePath</c> that match the input patterns.</returns>
         /// <param name="settings">Settings for fileset.</param>
         public static IEnumerable<FilePath> Find(FileSetSettings settings)
         {

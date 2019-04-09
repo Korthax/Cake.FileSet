@@ -11,6 +11,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cake.FileSet", "src\Cake.Fi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cake.FileSet.UnitTests", "tests\Cake.FileSet.UnitTests\Cake.FileSet.UnitTests.csproj", "{1ACFB3A0-741E-4C0E-8240-253F7C49E630}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{6EC1F4EB-3EF3-47D8-BDFA-74AA73BD4C81}"
+ProjectSection(SolutionItems) = preProject
+	build.cake = build.cake
+	build.ps1 = build.ps1
+	integration-test.ps1 = integration-test.ps1
+	tests\Cake.FileSet.IntegrationTests\test.netstandard.cake = tests\Cake.FileSet.IntegrationTests\test.netstandard.cake
+	build.sh = build.sh
+	integration-test.sh = integration-test.sh
+EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
