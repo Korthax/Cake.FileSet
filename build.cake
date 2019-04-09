@@ -2,10 +2,6 @@ var target = Argument("target", "Default");
 var configuration = Argument("configuration", "Release");
 var version = Argument("version", "*");
 
-var netStandardVersion = "netstandard2.0";
-var netCoreAppVersion = "netcoreapp2.0";
-var netFrameworkVersion = "net471";
-
 Task("Clean")
     .Does(() =>
     {
@@ -21,75 +17,35 @@ Task("Restore")
     .Does(() =>
     {
         var settings = new DotNetCoreRestoreSettings();
-        DotNetCoreRestore(settings);
+        DotNetCoreRestore("Cake.FileSet.sln", settings);
     });
 
-Task("BuildSource")
+Task("Build")
     .IsDependentOn("Restore")
     .Does(() =>
     {
-        var settingsNetFramework = new DotNetCoreBuildSettings
+        var settings = new DotNetCoreBuildSettings
         {
             Configuration = configuration,
-            Framework = netFrameworkVersion
+            NoRestore = true
         };
 
-        var settingsNetStandard = new DotNetCoreBuildSettings
-        {
-            Configuration = configuration,
-            Framework = netStandardVersion
-        };
-
-        foreach(var file in GetFiles("./src/*/*.csproj"))
-        {
-            DotNetCoreBuild(file.ToString(), settingsNetFramework);
-            DotNetCoreBuild(file.ToString(), settingsNetStandard);
-        }
-    });
-
-Task("BuildTests")
-    .IsDependentOn("BuildSource")
-    .Does(() =>
-    {
-        var settingsNetFramework = new DotNetCoreBuildSettings
-        {
-            Configuration = "Debug",
-            Framework = netFrameworkVersion
-        };
-
-        var settingsNetCoreApp = new DotNetCoreBuildSettings
-        {
-            Configuration = "Debug",
-            Framework = netCoreAppVersion
-        };
-
-        foreach(var file in GetFiles("./tests/*/*.csproj"))
-        {
-            DotNetCoreBuild(file.ToString(), settingsNetFramework);
-            DotNetCoreBuild(file.ToString(), settingsNetCoreApp);
-        }
+        DotNetCoreBuild("Cake.FileSet.sln", settings);
     });
 
 Task("Test")
-    .IsDependentOn("BuildTests")
+    .IsDependentOn("Build")
     .Does(() =>
     {
-        var settingsNetCoreApp = new DotNetCoreTestSettings
+        var settings = new DotNetCoreTestSettings
         {
-            Configuration = "Debug",
-            Framework = netCoreAppVersion
-        };
-
-        var settingsNetFramework = new DotNetCoreTestSettings
-        {
-            Configuration = "Debug",
-            Framework = netFrameworkVersion
+            Configuration = configuration,
+            NoBuild = true
         };
 
         foreach(var file in GetFiles("./tests/*/*.csproj"))
         {
-            DotNetCoreTest(file.ToString(), settingsNetCoreApp);
-            DotNetCoreTest(file.ToString(), settingsNetFramework);
+            DotNetCoreTest(file.ToString(), settings);
         }
     });
 
@@ -99,7 +55,7 @@ Task("Pack")
     {
         var settings = new DotNetCorePackSettings
         {
-            Configuration = "Release",
+            Configuration = configuration,
             OutputDirectory = "./artifacts/Cake.FileSet"
         };
 

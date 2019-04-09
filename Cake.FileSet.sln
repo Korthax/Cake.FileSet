@@ -19,6 +19,7 @@ ProjectSection(SolutionItems) = preProject
 	tests\Cake.FileSet.IntegrationTests\test.netstandard.cake = tests\Cake.FileSet.IntegrationTests\test.netstandard.cake
 	build.sh = build.sh
 	integration-test.sh = integration-test.sh
+	README.md = README.md
 EndProjectSection
 EndProject
 Global

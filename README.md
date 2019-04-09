@@ -7,9 +7,9 @@ AddIn that adds filesets to Cake using [**Microsoft.Extensions.FileSystemGlobbin
 
 ## Dependencies
 
-* Cake v0.27.0
-* Microsoft.Extensions.FileSystemGlobbing v2.0.1
-* NETStandard.Library v2.0 *when using .NETStandard2.0* or NET471
+* Cake v0.33.0
+* Microsoft.Extensions.FileSystemGlobbing v2.2.0
+* NETStandard.Library v2.0 *when using .NETStandard2.0*
 
 ## Build / Tests
 ### Running Build / Unit Tests
@@ -68,14 +68,14 @@ For more information on how Mircosoft's globbing works please see either their [
 
 ```csharp
 #addin "Cake.FileSet"
-#addin "nuget:?package=Microsoft.Extensions.FileSystemGlobbing&version=2.0.1"
+#addin "nuget:?package=Microsoft.Extensions.FileSystemGlobbing&version=2.2.0"
 ```
 
 ## Addin Usage
 
 ```csharp
 #addin "Cake.FileSet"
-#addin "nuget:?package=Microsoft.Extensions.FileSystemGlobbing&version=2.0.1"
+#addin "nuget:?package=Microsoft.Extensions.FileSystemGlobbing&version=2.2.0"
 
 ...
 
