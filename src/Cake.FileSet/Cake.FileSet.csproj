@@ -5,7 +5,7 @@
     <Authors>Steve Phillips</Authors>
     <RepositoryUrl>https://github.com/CleanKludge/Cake.FileSet</RepositoryUrl>
     <PackageProjectUrl>https://github.com/CleanKludge/Cake.FileSet</PackageProjectUrl>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/CleanKludge/Cake.FileSet/master/LICENSE</PackageLicenseUrl>
     <PackageTags>Cake Script File</PackageTags>
     <PackageVersion>2.0.0</PackageVersion>
     <RepositoryType>git</RepositoryType>
